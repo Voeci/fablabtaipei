@@ -1,0 +1,254 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>FabLab Taipei 仿站</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Geist+Mono:wght@400&display=swap"
+    />
+    <link rel="stylesheet" href="hark.css" />
+    <link rel="stylesheet" href="hark-hero.css" />
+    <style>
+      html { scroll-behavior: smooth; }
+      section[id] { scroll-margin-top: 80px; }
+      .x-topbar { background: var(--fill-primary); color: var(--text-primary-on); font: var(--type-small); }
+      .x-topbar__in { max-width: var(--page-max); margin: 0 auto; padding: 8px var(--gutter); display: flex; flex-wrap: wrap; gap: 4px 24px; }
+      .x-topbar a { color: inherit; text-decoration: none; display: inline-flex; align-items: center; min-height: var(--tap); }
+      .x-topbar__in { padding-top: 0; padding-bottom: 0; align-items: center; }
+      .x-logo { display: inline-flex; align-items: center; min-height: var(--tap); }
+      .x-nav { position: sticky; top: 0; z-index: 50; background: var(--mat-agent); backdrop-filter: var(--hark-blur); -webkit-backdrop-filter: var(--hark-blur); border-bottom: 1px solid var(--stroke-secondary); }
+      .x-nav__in { max-width: var(--page-max); margin: 0 auto; padding: 0 var(--gutter); display: flex; align-items: center; justify-content: space-between; min-height: 64px; }
+      .x-logo { font: var(--type-heading); font-weight: var(--weight-bold); color: var(--text-primary); text-decoration: none; }
+      .x-links { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+      .x-links a { display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 12px; border-radius: var(--r-pill); font: var(--type-label); color: var(--text-primary); text-decoration: none; transition: background var(--dur-quick) var(--ease-out); }
+      .x-links a:hover { background: var(--hover-wash); }
+      .x-burger { display: none; width: var(--tap); height: var(--tap); border: 1px solid var(--stroke-primary); border-radius: var(--r-s); background: transparent; color: var(--text-primary); cursor: pointer; font-size: 20px; }
+      @media (max-width: 820px) {
+        .x-burger { display: inline-flex; align-items: center; justify-content: center; }
+        .x-links { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; padding: 8px var(--gutter) 16px; background: var(--fill-primary-on); border-bottom: 1px solid var(--stroke-primary); }
+        .x-nav.is-open .x-links { display: flex; }
+        .x-links a { width: 100%; border-radius: var(--r-s); }
+      }
+      .x-split { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(24px, 5vw, 64px); align-items: center; }
+      .x-split--rev .x-split__media { order: -1; }
+      .x-split__media img { width: 100%; height: auto; display: block; border-radius: var(--r-l); }
+      .x-split h2 { font: var(--type-title); margin: 0 0 4px; }
+      .x-split .x-sub { font: var(--type-lede); color: var(--text-secondary); margin: 0 0 16px; }
+      .x-split .prose p { margin: 0 0 6px; }
+      @media (max-width: 760px) {
+        .x-split { grid-template-columns: 1fr; }
+        .x-split--rev .x-split__media { order: 0; }
+      }
+      .x-gear { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 16px; list-style: none; padding: 0; margin: 24px 0 0; }
+      .x-gear li { border: 1px solid var(--stroke-primary); border-radius: var(--r-m); overflow: hidden; background: var(--fill-primary-on); }
+      .x-gear__img { background: #fff; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; padding: 16px; }
+      .x-gear__img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+      .x-gear__body { padding: 14px 16px 16px; border-top: 1px solid var(--stroke-secondary); }
+      .x-gear h3 { font: var(--type-body-strong); margin: 0 0 4px; }
+      .x-gear p { font: var(--type-small); color: var(--text-secondary); margin: 0; letter-spacing: 0.02em; }
+      .x-foot { background: var(--fill-tertiary); margin-top: 48px; }
+      .x-foot__in { max-width: var(--page-max); margin: 0 auto; padding: 32px var(--gutter); }
+      .x-foot h2 { font: var(--type-tag); letter-spacing: 0.08em; color: var(--text-secondary); margin: 0 0 8px; }
+      .x-foot ul { list-style: none; padding: 0; margin: 0 0 24px; display: flex; flex-wrap: wrap; gap: 0 4px; }
+      .x-foot ul a { display: inline-flex; align-items: center; min-height: var(--tap); padding: 0 10px 0 0; font: var(--type-label); color: var(--text-primary); }
+      .x-foot small { font: var(--type-caption); color: var(--text-secondary); }
+    </style>
+  </head>
+  <body>
+    <div class="x-topbar">
+      <div class="x-topbar__in">
+        <span>Call : <a href="tel:+886225952322">+886 2 25952322</a></span>
+        <span>Email : <a href="mailto:info@fablabtaipei.me">info@fablabtaipei.me</a></span>
+      </div>
+    </div>
+    <header class="x-nav" id="x-nav">
+      <nav class="x-nav__in" aria-label="主選單">
+        <a class="x-logo" href="#top">Fablab Taipei</a>
+        <button class="x-burger" type="button" aria-label="開啟選單" aria-expanded="false" aria-controls="x-links">☰</button>
+        <ul class="x-links" id="x-links">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#facilities">Facilities</a></li>
+          <li><a href="#academy">Fab Academy</a></li>
+          <li><a href="#event">Event</a></li>
+          <li><a href="#class">Class</a></li>
+          <li><a href="#location">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+    <div class="page" id="top">
+      <main class="main">
+        <section class="section" id="hub">
+          <div class="x-split">
+            <div>
+              <h2>Your Creative Hub</h2>
+              <p class="x-sub">一個開放創新的社群</p>
+              <div class="prose">
+                <p>Fablab Taipei 台北自造實驗室是個對大眾開放的自造者空間，</p>
+                <p>一個讓各種創新點子實踐的場域。</p>
+                <p>任何人都歡迎來這裡自造自己的作品，</p>
+                <p>或是舉辦創新自造相關的活動及聚會，</p>
+                <p>分享自己的創意。</p>
+              </div>
+              <div class="links" style="margin-top: 20px"><a class="btn" href="#location">預約參觀</a></div>
+            </div>
+            <div class="x-split__media"><img src="creativehub.png" alt="自造者空間插圖" /></div>
+          </div>
+        </section>
+
+        <section class="section" id="academy">
+          <div class="x-split x-split--rev">
+            <div>
+              <h2>Fab Academy</h2>
+              <p class="x-sub">如何製作幾乎任何東西</p>
+              <div class="prose">
+                <p>是由麻省理工學院位元與原子中心（Center for Bits and Atoms，簡稱CBA）主任尼爾‧格申斐德（Neil Gershenfeld）於麻省理工媒體實驗室（MIT Media Labs）所開設的課程。每年上半年在全世界的Fab Academy Node都可遠端參與同樣由Neil本人親自授課，內容完全相同的線上線下混成課程。</p>
+              </div>
+            </div>
+            <div class="x-split__media"><img src="academy.png" alt="Fab Academy 插圖" /></div>
+          </div>
+        </section>
+
+        <section class="section" id="opensource">
+          <div class="x-split">
+            <div>
+              <h2>OpenSource Innovation</h2>
+              <p class="x-sub">開源創新</p>
+              <div class="prose">
+                <p>開源是一種理念，相信資訊透明、公開分享更能有效創造影響力與價值，加速文化、藝術、科技發展。開源硬體除了提供原始設計檔案外，更包含詳細製作流程說明，讓任何人下載檔案後都能藉由數位製造工具的協助，複製或改製原本的創作，達成知識共享、跨時空協作的目的。</p>
+              </div>
+            </div>
+            <div class="x-split__media"><img src="opensource.png" alt="開源創新插圖" /></div>
+          </div>
+        </section>
+
+        <section class="section" id="facilities">
+          <div class="head">
+            <p class="head__eyebrow">OUR EQUIPMENT</p>
+            <h2>我們的設施</h2>
+          </div>
+          <div class="prose">
+            <p>我們提供各種數位製造設備供大眾使用，並提供教學課程，在符合實驗室使用規則的條件下可以免費使用，使用者需自備材料及耗材，使用後，必須自行清潔環境及設備復原，並將所製造的垃圾自行帶走。</p>
+            <p lang="en">We offer a variety of digital manufacturing equipment for public use and provide instructional courses. Under compliance with laboratory usage rules, it can be used free of charge. Users are required to provide their own materials and consumables. After usage, users must clean the environment and equipment themselves and dispose of any generated waste.</p>
+          </div>
+          <ul class="x-gear">
+            <li><div class="x-gear__img"><img src="vls-pic.png" alt="Universal VLS 4.60 雷射切割機" /></div><div class="x-gear__body"><h3>Laser Cutter 雷射切割機</h3><p>UNIVERSAL VLS 4.60 50W</p></div></li>
+            <li><div class="x-gear__img"><img src="MDX-540.png" alt="Roland MDX-540 數控銑床" loading="lazy" /></div><div class="x-gear__body"><h3>CNC 數控銑床</h3><p>ROLAND MODELA MDX-540</p></div></li>
+            <li><div class="x-gear__img"><img src="ender3.png" alt="Creality Ender-3 3D印表機" loading="lazy" /></div><div class="x-gear__body"><h3>FDM 積層式3D印表機</h3><p>CREALITY ENDER-3</p></div></li>
+            <li><div class="x-gear__img"><img src="bambu.png" alt="Bambu Lab X1E 3D印表機" loading="lazy" /></div><div class="x-gear__body"><h3>FDM 積層式3D印表機</h3><p>Bambu Lab X1E</p></div></li>
+            <li><div class="x-gear__img"><img src="Phrozen-b2.png" alt="Phrozen Make 光固化3D印表機" loading="lazy" /></div><div class="x-gear__body"><h3>SLA 光固化3D印表機</h3><p>PHROZEN MAKE</p></div></li>
+            <li><div class="x-gear__img"><img src="mdx20.png" alt="Roland MDX-20 迷你CNC銑床" loading="lazy" /></div><div class="x-gear__body"><h3>迷你CNC銑床</h3><p>ROLAND MDX-20</p></div></li>
+            <li><div class="x-gear__img"><img src="vaquform.png" alt="Vaquform DT1 真空成型機" loading="lazy" /></div><div class="x-gear__body"><h3>Vacuum Form Machine 真空成型機</h3><p>VAQUFORM DT1</p></div></li>
+            <li><div class="x-gear__img"><img src="CE600060.png" alt="Graphtec CE6000-60 數位切紙機" loading="lazy" /></div><div class="x-gear__body"><h3>數位切紙機</h3><p>GRAPHTEC CE6000-60</p></div></li>
+            <li><div class="x-gear__img"><img src="se400.png" alt="Brother SE-400 數位縫紉機" loading="lazy" /></div><div class="x-gear__body"><h3>Embroidery Machine 數位縫紉機</h3><p>BROTHER SE-400</p></div></li>
+          </ul>
+        </section>
+
+        <section class="section" id="event">
+          <div class="head">
+            <p class="head__eyebrow">Event Schedule</p>
+            <h2>活動日程</h2>
+            <p class="head__sub">以下為範例資料，實際活動請以官方公告為準。</p>
+          </div>
+          <div class="cards">
+            <div>
+              <p><span class="chip">範例</span></p>
+              <h3>Open Lab 開放日</h3>
+              <p>每週六 10:00-16:00（範例）</p>
+            </div>
+            <div>
+              <p><span class="chip">範例</span></p>
+              <h3>雷射切割入門課（範例）</h3>
+              <p>認識雷射切割機的安全規則與基本操作。</p>
+            </div>
+            <div>
+              <p><span class="chip">範例</span></p>
+              <h3>3D列印工作坊（範例）</h3>
+              <p>從建模到列印，完成第一件 3D 列印作品。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="class">
+          <div class="head">
+            <p class="head__eyebrow">Class</p>
+            <h2>課程</h2>
+          </div>
+          <div class="prose">
+            <p>提供雷射切割、3D列印、CNC等設備教學課程，歡迎來信詢問：<a class="link" href="mailto:info@fablabtaipei.me">info@fablabtaipei.me</a></p>
+          </div>
+        </section>
+
+        <section class="section" id="about">
+          <div class="x-split x-split--rev">
+            <div>
+              <h2>About Us</h2>
+              <p class="x-sub">關於我們</p>
+              <div class="prose">
+                <p>FabLab是一個源自美國麻省理工學院MIT Center for Bits and Atoms的國際社群，目前在全球一百多個國家有超過2000多家開放實驗室。Fablab Taipei 於2013年5月成立，由台灣自造者協會營運，基地位於圓山花博園區內。</p>
+              </div>
+            </div>
+            <div class="x-split__media"><img src="about.png" alt="關於 Fablab Taipei 插圖" /></div>
+          </div>
+        </section>
+
+        <section class="section" id="location">
+          <div class="head">
+            <p class="head__eyebrow">Our Location</p>
+            <h2>如何找到我們</h2>
+          </div>
+          <div class="cards">
+            <div>
+              <h3>地址 Address</h3>
+              <p>10491 台北市中山區玉門街1號（台北創新中心A室，圓山花博園區）</p>
+              <p lang="en">No.1 Yumen St., Zhongshan Dist., Taipei City</p>
+            </div>
+            <div>
+              <h3>聯絡 Contact</h3>
+              <ul>
+                <li>電話 <a class="link" href="tel:+886225952322">+886 2 2595 2322</a></li>
+                <li>Email <a class="link" href="mailto:info@fablabtaipei.me">info@fablabtaipei.me</a></li>
+              </ul>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+    <footer class="x-foot">
+      <div class="x-foot__in">
+        <h2>QUICK LINKS</h2>
+        <ul>
+          <li><a href="#top">Home</a></li>
+          <li><a href="#facilities">Facilities</a></li>
+          <li><a href="#academy">Fab Academy</a></li>
+          <li><a href="#event">Event</a></li>
+          <li><a href="#class">Class</a></li>
+          <li><a href="#location">Contact</a></li>
+        </ul>
+        <small>© All Rights Reserved By Fablab Taipei</small>
+      </div>
+    </footer>
+    <script src="hark.js"></script>
+    <script>
+      (function () {
+        var nav = document.getElementById("x-nav");
+        var btn = nav.querySelector(".x-burger");
+        btn.addEventListener("click", function () {
+          var open = nav.classList.toggle("is-open");
+          btn.setAttribute("aria-expanded", open ? "true" : "false");
+          btn.textContent = open ? "✕" : "☰";
+        });
+        nav.querySelectorAll(".x-links a").forEach(function (a) {
+          a.addEventListener("click", function () {
+            nav.classList.remove("is-open");
+            btn.setAttribute("aria-expanded", "false");
+            btn.textContent = "☰";
+          });
+        });
+      })();
+    </script>
+  </body>
+</html>
